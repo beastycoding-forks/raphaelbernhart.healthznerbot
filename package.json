@@ -27,8 +27,9 @@
     },
     "homepage": "https://github.com/raphaelbernhart/healthznerbot#readme",
     "dependencies": {
+        "@discordjs/builders": "^0.16.0-dev.1657239113-e78c9c9",
         "axios": "^0.25.0",
-        "discord.js": "^13.0.0",
+        "discord.js": "13.8.0",
         "dotenv": "^14.0.0",
         "hcloud-js": "^1.4.1"
     },
@@ -38,6 +39,6 @@
         "@types/ws": "8.2.2",
         "nodemon": "2.0.15",
         "ts-node": "^10.8.1",
-        "typescript": "4.5.5"
+        "typescript": "^4.5.5"
     }
 }

@@ -3,8 +3,6 @@ import { TextChannel, MessageAttachment, Message } from "discord.js";
 import path from "path";
 import Logger from "../helper/Logger";
 
-import Discord from "discord.js";
-
 import de from "../lang/de";
 import en from "../lang/en";
 
@@ -64,7 +62,7 @@ export default async function StatusCommand(
                     const url =
                         res.data.data.images.fixed_width_downsampled.url;
                     const attachment = new MessageAttachment(url);
-                    const logo = new MessageAttachment(
+                    const logo: any = new MessageAttachment(
                         path.join(__dirname + "/../assets/giphy-logo.png")
                     );
 
@@ -72,9 +70,7 @@ export default async function StatusCommand(
                     channel
                         .send({
                             content: allOnlineMessage,
-                            embed: {
-                                image: { url: url },
-                            },
+                            files: [url],
                         })
                         .catch((err) => console.log(new Error(err)))
                         .then(() => {
@@ -95,11 +91,14 @@ export default async function StatusCommand(
             }
         } else {
             if (!arrayEquals(lastUpdate, stoppedServers)) {
-                channel.send(message);
+                message.forEach((msg: string) => {
+                    channel.send(msg);
+                });
             }
             return stoppedServers;
         }
     } catch (err: any) {
         Logger.error(err);
     }
+    return true;
 }
